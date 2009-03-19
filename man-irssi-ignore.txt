@@ -1,0 +1,49 @@
+16:56 IGNORE [-regexp | -full] [-pattern <pattern>] [-except] [-replies] [-network <network>] [-channels <channel>] [-time <secs>] <mask> [<levels>]
+16:56 IGNORE [-regexp | -full] [-pattern <pattern>] [-except] [-replies] [-network <network>] [-time <secs>] <channels> [<levels>]
+16:56
+16:56     -regexp: <pattern> is a regular expression
+16:56     -full: <pattern> must match to full words
+16:56     -pattern: <pattern> must match to the message's text
+16:56     -replies: Ignore replies to nick in channels. For example
+16:56               "/IGNORE -replies *!*@*.fi PUBLIC" ignores everyone
+16:56               from Finland, but also anyone sending message
+16:56               "tofinnishnick: blahblah".
+16:56     -except: *DON'T* ignore - overrides an existing ignore.
+16:56     -network: Ignore only on this network.
+16:56     -ircnet: Same as -network. Deprecated. Do not use.
+16:56     -channels: Ignore only in channels
+16:56     <mask>: Either a nick mask or list of channels
+16:56     <levels>: List of levels to ignore. You can use -<level> to remove levels
+16:56               from ignore.
+16:56     <^levels>: List of levels to NOT ignore
+16:56                (/ignore -except nick notices = /ignore nick ^notices)
+16:56
+16:56
+16:56 /IGNORE without any arguments displays list of ignores. If you want to remove some levels of the ignore, use /IGNORE <mask> -<level> -<level2> etc
+16:56
+16:56 The best match always wins, so you can have:
+16:56     /IGNORE * CTCPS
+16:56     /IGNORE -except *!*@host.org CTCPS
+16:56
+16:56 Examples:
+16:56
+16:56     /IGNORE #channel ALL -PUBLIC -ACTIONS   - ignore all but public/actions
+16:56     /IGNORE #channel -JOINS                 - don't ignore joins anymore
+16:56     /IGNORE -replies *!user@*.host.org ALL  - ignore user and all replies
+16:56
+16:56 Some suggestions for ignoring annoying public aways:
+16:56     /IGNORE -regexp -pattern "is (away|gone|back)" * ACTIONS
+16:56     /IGNORE *zzz* NICKS
+16:56     /IGNORE *afk* NICKS
+16:56     /IGNORE *away* NICKS
+16:56
+16:56 For regular expressions, see `man 7 regex`.
+16:56
+16:56 See also: UNIGNORE
+16:56
+16:56
+16:56 UNIGNORE <id>|<mask>
+16:56
+16:56 Unignores the specified userhost mask. If you want to unignore only some levels, use /IGNORE <mask> -<level>.
+16:56
+16:56 See also: IGNORE
