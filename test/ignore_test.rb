@@ -3,6 +3,17 @@ require File.expand_path('../../lib/ignore', __FILE__)
 
 describe 'Ignore' do
   it "should have registered the `ignore' command" do
-    assert LimeChat::Plugin.all.any? { |p| p.respond_to?(:ignore_command) }
+    plugin.should.not.be nil
+  end
+  
+  it "should add a nick ignore rule" do
+    LimeChat::Plugin.process_command(:ignore, 'alloy')
+    plugin.nicks.should.include 'alloy'
+  end
+  
+  private
+  
+  def plugin
+    LimeChat::Plugin.all.find { |p| p.respond_to?(:ignore_command) }
   end
 end
