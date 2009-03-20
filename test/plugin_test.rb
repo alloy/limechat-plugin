@@ -2,6 +2,10 @@ require File.expand_path('../test_helper', __FILE__)
 
 LimeChat::Plugin.define do
   command :test do |message|
+    an_instance_method(message)
+  end
+  
+  def an_instance_method(message)
     'Hey there' if message == 'Howdy'
   end
 end
@@ -17,6 +21,10 @@ describe "LimeChat::Plugin class" do
   
   it "should forward the command to the plugin" do
     plugin.process_command(:test, 'Howdy').should == 'Hey there'
+  end
+  
+  it "should return nil if a not existing command is processed" do
+    plugin.process_command(:does_not_exist, 'Whatever').should.be nil
   end
   
   private
