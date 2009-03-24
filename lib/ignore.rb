@@ -5,8 +5,10 @@ LimeChat::Plugin.define do
     @rules = []
   end
   
-  command_options :ignore,
-    :pattern => "Matches if the message includes the given pattern."
+  options_for :ignore do |opts|
+    opts.values [:p, :pattern] => "Matches if the message includes the given pattern."
+    # opts.switches ...
+  end
   
   command :ignore do |message|
     @rules << { :nick => message }
