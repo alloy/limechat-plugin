@@ -1,11 +1,11 @@
 LimeChat::Plugin.define do
-  attr_reader :nicks
+  attr_reader :rules
   
   def initialize
-    @nicks = []
+    @rules = []
   end
   
   command :ignore do |message|
-    @nicks << message
+    @rules << { :nick => message }
   end
 end

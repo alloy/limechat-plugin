@@ -8,7 +8,7 @@ describe 'Ignore' do
   
   it "should add a nick ignore rule" do
     LimeChat::Plugin.process_command(:ignore, 'alloy')
-    plugin.nicks.should.include 'alloy'
+    plugin.rules.should.include(:nick => 'alloy')
   end
   
   private
